@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun saveToList(){
-        orders.add()
+        //orders.add()
     }
 
     fun placeOrder(view: View){
