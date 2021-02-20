@@ -5,16 +5,18 @@ import kotlin.math.roundToInt
 import kotlin.math.roundToLong
 
 data class OrderClass(var subtotal: Float){
+    var id : Int = 0
     var small_fee: Float = subtotal * 0.02F
     var service_fee: Float = subtotal * 0.05F
     var delivery_fee: Float = subtotal * 0.10F
     var tip: Float = 0.0F
     var total_final: Float = 0.0F
     var notes: String = ""
+    override fun toString(): String = "Order $id = $ $total_final"
 }
 
 fun main(){
-    var order1 = OrderClass(subtotal = 8.95F)
+    var order1 = OrderClass(subtotal = 0.0F)
 
     order1.tip = order1.subtotal * 0.10F // tip depends on the user
 

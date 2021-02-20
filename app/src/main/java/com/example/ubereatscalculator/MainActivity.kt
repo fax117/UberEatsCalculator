@@ -1,11 +1,16 @@
 package com.example.ubereatscalculator
 
+import android.graphics.Color.RED
+import android.graphics.Color.red
+import android.hardware.camera2.params.RggbChannelVector.RED
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
+import java.lang.Exception
 import java.lang.Float.parseFloat
 import java.lang.NullPointerException
 
@@ -35,23 +40,23 @@ class MainActivity : AppCompatActivity() {
 
     fun changeText(){
         subtotal_number_field.addTextChangedListener(object: TextWatcher{
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                createOrder(0.0F)
-            }
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
             override fun afterTextChanged(s: Editable?) {
-                if (s.toString() == ""){
-                    createOrder(0.0F)
-                }
-
+                createOrder(0.0F)
             }
-
         })
     }
 
     fun createOrder(tip: Float){
-        var order = OrderClass(subtotal = parseFloat(subtotal_number_field.text.toString()))
 
+        var order: OrderClass = if (subtotal_number_field.text== null || subtotal_number_field.text.isEmpty() || subtotal_number_field.text.isBlank()) {
+            OrderClass(subtotal = 0.0F )
+        } else{
+            OrderClass(subtotal = parseFloat(subtotal_number_field.text.toString()))
+        }
+
+        order.id = orders.size + 1
         order.notes = notes_miltiline_field.text.toString()
 
         order.tip = order.subtotal * tip // tip depends on the user
@@ -63,13 +68,15 @@ class MainActivity : AppCompatActivity() {
         service_fee_label.text = String.format("$ %.2f", order.service_fee)
         delivery_fee_label.text = String.format("$ %.2f", order.delivery_fee)
         place_order_button.text = String.format("Place Order - Delivery \t\t $ %.2f", order.total_final)
+
+        place_order_button.setOnClickListener{
+            placeOrder(order)
+        }
     }
 
-    fun saveToList(){
-        //orders.add()
-    }
-
-    fun placeOrder(view: View){
-        println("sup")
+    fun placeOrder(order: OrderClass){
+        orders.add(order)
+        changeText()
+        Log.d("order", "Orders: ${orders.toString()}")
     }
 }
