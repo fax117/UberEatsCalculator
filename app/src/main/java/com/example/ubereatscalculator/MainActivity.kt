@@ -76,7 +76,9 @@ class MainActivity : AppCompatActivity() {
 
     fun placeOrder(order: OrderClass){
         orders.add(order)
+        subtotal_number_field.text.clear()
         changeText()
+
         Log.d("order", "Orders: ${orders.toString()}")
     }
 }
