@@ -1,8 +1,6 @@
 package com.example.ubereatscalculator
 
-import android.graphics.Color.RED
-import android.graphics.Color.red
-import android.hardware.camera2.params.RggbChannelVector.RED
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -10,9 +8,7 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import kotlinx.android.synthetic.main.activity_main.*
-import java.lang.Exception
 import java.lang.Float.parseFloat
-import java.lang.NullPointerException
 
 class MainActivity : AppCompatActivity() {
     val orders = mutableListOf<OrderClass>()
@@ -20,6 +16,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         changeText()
+
+        orders_button.setOnClickListener {
+            val intento = Intent(this, OrdersActivity::class.java)
+            startActivity(intento)
+        }
     }
 
     fun onclick0(view: View) {
@@ -78,7 +79,6 @@ class MainActivity : AppCompatActivity() {
         orders.add(order)
         subtotal_number_field.text.clear()
         changeText()
-
         Log.d("order", "Orders: ${orders.toString()}")
     }
 }

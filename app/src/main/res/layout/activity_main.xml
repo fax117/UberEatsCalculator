@@ -16,6 +16,7 @@
         android:textSize="30sp"
         app:layout_constraintBottom_toTopOf="@+id/notes_miltiline_field"
         app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.073"
         app:layout_constraintStart_toStartOf="@+id/guideline2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -268,5 +269,17 @@
         android:layout_height="60dp"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="376dp" />
+
+    <Button
+        android:id="@+id/orders_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="List Orders"
+        app:layout_constraintBottom_toTopOf="@+id/notes_miltiline_field"
+        app:layout_constraintEnd_toStartOf="@+id/guideline6"
+        app:layout_constraintHorizontal_bias="0.879"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
